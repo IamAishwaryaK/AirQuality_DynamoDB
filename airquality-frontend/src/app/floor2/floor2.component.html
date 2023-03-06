@@ -1,0 +1,39 @@
+  
+  <div class="container">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Floor</th>
+        <th>Oxygen</th>
+        <th>Carbondioxide</th>
+        <th>Sulphurdioxde</th>
+        <th>Carbonmonoxide</th>
+        <th>Carbon</th>
+        <th>Airquality</th>
+        <th>Timestamp</th>
+        <th>Remarks</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let a of airQual">
+        <td><span>{{a.floor}}</span></td>
+        <td><span >{{a.oxygen}}</span></td>
+                    <td><span *ngIf="a.carbondioxide<30;else greati ">{{a.carbondioxide}}</span></td>
+        <ng-template #greati>
+          <td><span [ngStyle]="{color:'red'}">{{a.carbondioxide}}</span></td>              
+        </ng-template>
+        <td><span>{{a.sulphurdioxde}}</span></td>
+        <td><span>{{a.carbonmonoxide}}</span></td>
+        <td><span>{{a.carbon}}</span></td>
+        <td><span *ngIf="a.carbondioxide<30 else great ">{{a.airqual}}</span></td>
+        <ng-template #great>
+          <td><span [ngStyle]="{color:'red'}">{{a.airqual}}</span></td>              
+        </ng-template>
+        <td><span>{{a.timestamp}}</span></td>
+        <td *ngIf="(a.isError===0)">{{iferror}}</td>
+        <td *ngIf="(a.isNull===0)">{{ifnull}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  

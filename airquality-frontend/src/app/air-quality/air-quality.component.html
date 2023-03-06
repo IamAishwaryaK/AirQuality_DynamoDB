@@ -1,0 +1,42 @@
+    <div class="container">
+      <h4 class="display-4">AirQualityMonitor</h4>
+      <p>This application monitors airQuality of three floors. </p>
+    </div>
+    <div class="container">
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Floor</th>
+            <th>Oxygen</th>
+            <th>Carbondioxide</th>
+            <th>Sulphurdioxde</th>
+            <th>Carbonmonoxide</th>
+            <th>Carbon</th>
+            <th>Airquality</th>
+            <th>Timestamp</th>
+            <th>Remarks</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let aq of airQual">
+            <td><span>{{aq.floor}}</span></td>
+            <td><span >{{aq.oxygen}}</span></td>
+                        <td><span *ngIf="aq.carbondioxide<30;else greati ">{{aq.carbondioxide}}</span></td>
+            <ng-template #greati>
+              <td><span [ngStyle]="{color:'red'}">{{aq.carbondioxide}}</span></td>              
+            </ng-template>
+            <td><span>{{aq.sulphurdioxde}}</span></td>
+            <td><span>{{aq.carbonmonoxide}}</span></td>
+            <td><span>{{aq.carbon}}</span></td>
+            <td><span *ngIf="aq.carbondioxide<30 else great ">{{aq.airqual}}</span></td>
+            <ng-template #great>
+              <td><span [ngStyle]="{color:'red'}">{{aq.airqual}}</span></td>              
+            </ng-template>
+            <td><span>{{aq.timestamp}}</span></td>
+            <td *ngIf="(aq.isError===0)">{{iferror}}</td>
+            <td *ngIf="(aq.isNull===0)">{{ifnull}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>

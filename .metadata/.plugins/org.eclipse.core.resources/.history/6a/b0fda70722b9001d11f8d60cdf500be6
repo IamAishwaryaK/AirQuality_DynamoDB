@@ -1,0 +1,13 @@
+server.port=5000
+spring.application.name=airqualtymonitor
+
+#aws.dynamodb.endpoint=https://dynamodb.ap-northeast-1.amazonaws.com
+#aws.dynamodb.accessKey=AKIAW46RKEMYIKGTJS6X
+#aws.dynamodb.secretKey=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
+
+
+##log
+spring.main.banner-mode=off
+logging.file.path=/
+logging.file.name=aqlog.txt  
+logging.level.com.airqualitymanagement.aqmicroservices= INFO

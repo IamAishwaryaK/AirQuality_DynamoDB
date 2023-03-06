@@ -1,0 +1,51 @@
+package com.airquality.microservice.airqualtymonitor.config;
+
+
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
+
+@Configuration
+public class DynamodbConfiguration{
+	public static final String SERVICE_ENDPOINT = "https://dynamodb.ap-northeast-1.amazonaws.com";
+    //public static final String REGION = "";
+    public static final String ACCESS_KEY = "AKIAW46RKEMYIKGTJS6X";
+    public static final String SECRET_KEY = "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";
+	
+    @Value(SERVICE_ENDPOINT)
+    private String dynamoDbEndpoint;
+    @Value(ACCESS_KEY)
+    private String awsAccessKey;
+    @Value(SECRET_KEY)
+    private String awsSecretKey;
+
+
+    @Bean
+    public DynamoDBMapper dynamoDBMapper(){
+        return new DynamoDBMapper(amazonDynamoDb());
+    }
+
+    private AmazonDynamoDB amazonDynamoDb() {
+        return AmazonDynamoDBClientBuilder.standard()
+                .withEndpointConfiguration(
+                        new AwsClientBuilder.EndpointConfiguration(dynamoDbEndpoint, "ap-northeast-1"))
+                .withCredentials(amazonDynamoDBCredentials()).build();
+    }
+//connect to aws cli with aws cred
+    private AWSCredentialsProvider amazonDynamoDBCredentials() {
+        return new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretKey));
+    }
+
+
+}
+
