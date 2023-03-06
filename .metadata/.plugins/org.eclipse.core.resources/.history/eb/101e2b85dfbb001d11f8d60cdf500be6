@@ -2,8 +2,8 @@ server.port=5000
 spring.application.name=airqualitymonitor
 
 aws.dynamodb.endpoint=https://dynamodb.ap-northeast-1.amazonaws.com
-aws.dynamodb.accessKey=AKIA6EBEQ6IV6I3AYG7K
-aws.dynamodb.secretKey=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
+aws.dynamodb.accessKey=AKIA6EBEQ6IV6E2IDOFZ
+aws.dynamodb.secretKey=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
 
 
 ##log
